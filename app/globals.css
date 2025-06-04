@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #776bff;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -23,4 +23,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: "Komigo3D";
+  src: url("../public/fonts/Komigo3D-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+.font-komigo3d {
+  font-family: "Komigo3D", sans-serif;
+}
+
+@font-face {
+  font-family: "Crispy";
+  src: url("../public/fonts/Fish\ Crispy.woff2") format("woff2");
+  font-display: swap;
+}
+
+.font-crispy {
+  font-family: "Crispy", sans-serif;
 }
