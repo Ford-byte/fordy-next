@@ -4,20 +4,23 @@ import axios from "axios";
 import Image from "next/image";
 import Projects from "./blocks/Projects";
 import About from "./blocks/About";
+import Services from "./blocks/Services";
+import Experience from "./blocks/Experience";
+import Contact from "./blocks/Contact";
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:1337/api/projects?populate=*")
-      .then((response) => {
-        setProjects(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching projects:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:1337/api/projects?populate=*")
+  //     .then((response) => {
+  //       setProjects(response.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching projects:", error);
+  //     });
+  // }, []);
 
   return (
     <div className="relative w-full h-full">
@@ -74,8 +77,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <Projects /> */}
       <About />
+      <Services />
+      <Experience />
+      <Contact />
     </div>
   );
 }
