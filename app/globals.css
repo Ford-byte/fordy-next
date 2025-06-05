@@ -44,3 +44,35 @@ body {
 .font-crispy {
   font-family: "Crispy", sans-serif;
 }
+
+@keyframes scrollWheel {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.scroll-wheel-animation {
+  animation: scrollWheel 1.5s ease-in-out infinite;
+}
+
+.container {
+  width: 100%;
+  @media (width >= 40rem /* 640px */) {
+    max-width: 20rem /* 640px */;
+  }
+  @media (width >= 48rem /* 768px */) {
+    max-width: 28rem /* 768px */;
+  }
+  @media (width >= 64rem /* 1024px */) {
+    max-width: 34rem /* 1024px */;
+  }
+  @media (width >= 80rem /* 1280px */) {
+    max-width: 50rem /* 1280px */;
+  }
+  @media (width >= 96rem /* 1536px */) {
+    max-width: 56rem /* 1536px */;
+  }
+}

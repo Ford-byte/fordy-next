@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="relative border-r border-black/20 w-[20%] h-screen bg-[#776bff] flex flex-col justify-between p-6">
+    <div className="fixed border-r border-black/20 lg:w-[30%] xl:w-[20%] h-screen bg-[#776bff] lg:flex flex-col justify-between p-6 hidden">
       <div className="font-crispy text-5xl ">
         <Link
           href={`#`}
@@ -30,7 +30,7 @@ export default function Header() {
           <p className="group-hover:flex hidden text-red-500">.</p>
         </Link>
         <Link
-          href={`/`}
+          href={`/about`}
           className="font-crispy flex group gap-x-2 items-center hover:translate-x-2 transition-all duration-300 ease-in-out"
         >
           <svg viewBox="0 0 32 32" className="size-7 fill-white">
@@ -50,7 +50,7 @@ export default function Header() {
           <p className="group-hover:flex hidden text-red-500">.</p>
         </Link>
         <Link
-          href={`/`}
+          href={`/projects`}
           className="font-crispy flex group gap-x-2 items-center hover:translate-x-2 transition-all duration-300 ease-in-out"
         >
           <svg viewBox="0 0 511 511.998" className="size-7 fill-white">
