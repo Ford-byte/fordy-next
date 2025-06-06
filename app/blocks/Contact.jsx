@@ -51,8 +51,7 @@ export default function Contact() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(erro      alert("Form submitted successfully!");
-        rData.error || "Failed to submit the form");
+        throw new Error(errorData.error || "Failed to submit the form");
       }
 
       setFormData({
@@ -71,11 +70,11 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-fit bg-white w-full text-black py-12">
+    <div className="h-fit bg-white w-full text-black py-12 px-6 lg:px-0">
       <div className="mx-auto container flex flex-col gap-12">
         <p className="font-crispy text-4xl">Contact</p>
         <div className="flex gap-4">
-          <div className="col-span-1 flex flex-col gap-2 text-gray-400">
+          <div className="col-span-1  flex-col gap-2 text-gray-400 hidden lg:flex">
             <div className="font-crispy text-xl">
               Let's talk about everything!
             </div>

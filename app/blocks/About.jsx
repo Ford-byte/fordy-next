@@ -2,19 +2,19 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="h-[500px] bg-white w-full text-black py-12">
-      <div className="mx-auto container flex flex-col gap-12">
-        <p className="font-crispy text-4xl">About Me</p>
+    <div className="h-fit bg-white w-full text-black py-12">
+      <div className="mx-auto container flex flex-col gap-6">
+        <p className="font-crispy text-4xl px-6 lg:px-0">About Me</p>
         <div>
           <div className="flex gap-6">
             <Image
               src={`/avatar-2.svg`}
               width={50}
               height={50}
-              className="size-[200px] rounded-full "
+              className="size-[200px] rounded-full hidden lg:block "
               alt="avatar"
             />
-            <div className="relative message w-full shadow-lg rounded-2xl p-4 grid grid-cols-2">
+            <div className="relative message w-full shadow-lg rounded-2xl p-4 grid lg:grid-cols-2 gap-y-12">
               <div className="text-gray-500 font-mono px-2">
                 <p>
                   I'm Clifford, a web developer from the Philippines. With 2

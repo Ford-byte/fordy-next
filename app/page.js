@@ -10,16 +10,16 @@ import Contact from "./blocks/Contact";
 export default function Home() {
 
   return (
-    <div className="relative w-full h-full">
-      <div className="relative flex flex-col items-center justify-center w-full h-screen gap-y-6">
+    <div className="relative ">
+      <div className="relative flex flex-col items-center justify-center w-full h-[720px] lg:h-screen gap-y-6">
         <Image
           src={`/avatar-1.svg`}
           width={50}
           height={50}
-          className="size-[200px] rounded-full "
+          className="size-[200px] rounded-full object-cover"
           alt="avatar"
         />
-        <div className="font-crispy text-3xl ">CLIFFORD JAY IYAC</div>
+        <div className="font-crispy text-3xl">CLIFFORD JAY IYAC</div>
         <div className="flex gap-6">
           <div className="">
             <svg
