@@ -51,17 +51,16 @@ export default function Contact() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to submit the form");
+        throw new Error(erro      alert("Form submitted successfully!");
+        rData.error || "Failed to submit the form");
       }
 
-      alert("Form submitted successfully!");
       setFormData({
         name: "",
         email: "",
         subject: "",
         message: "",
       });
-      fetchSubmittedForms();
     } catch (error) {
       console.error("Error submitting the form:", error);
       setError(
