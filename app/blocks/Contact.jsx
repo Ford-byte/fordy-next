@@ -70,7 +70,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-fit bg-white w-full text-black py-12 px-6 lg:px-0">
+    <div className="h-fit bg-white w-full text-black py-12 px-6 lg:px-0" id="contact">
       <div className="mx-auto container flex flex-col gap-12">
         <p className="font-crispy text-4xl">Contact</p>
         <div className="flex gap-4">

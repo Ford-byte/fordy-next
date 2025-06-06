@@ -8,7 +8,6 @@ import Experience from "./blocks/Experience";
 import Contact from "./blocks/Contact";
 
 export default function Home() {
-
   return (
     <div className="relative ">
       <div className="relative flex flex-col items-center justify-center w-full h-[720px] lg:h-screen gap-y-6">
@@ -54,9 +53,12 @@ export default function Home() {
             </svg>
           </div>
         </div>
-        <div className="border px-10 py-4 rounded-full shadow-lg hover:shadow-none -translate-y-[2px] hover:translate-y-0 transition-all duration-200 bg-[#912403] tracking-widest font-[700]">
+        <a
+          href="#contact"
+          className="border px-10 py-4 rounded-full shadow-lg hover:shadow-none -translate-y-[2px] hover:translate-y-0 transition-all duration-200 bg-[#912403] tracking-widest font-[700]"
+        >
           Hire Me
-        </div>
+        </a>
         <div className="absolute bottom-4 left-0 flex flex-col items-center justify-center w-full gap-2">
           <div className="capitalize">scroll down</div>
           <div className="mouse-border border w-[25px] h-[40px] rounded-full flex items-center justify-center">
