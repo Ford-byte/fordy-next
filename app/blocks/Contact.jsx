@@ -1,25 +1,74 @@
-import React, { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import React, { useState, useEffect } from "react";
+import { client } from "../sanity/client";
 
 export default function Contact() {
-  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const handleCaptchaChange = (value) => {
-    if (value) {
-      setCaptchaVerified(true);
-    } else {
-      setCaptchaVerified(false);
-    }
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!captchaVerified) {
-      alert("Please verify the CAPTCHA before submitting.");
+    setError("");
+
+    // Basic validation
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
+      setError("All fields are required.");
       return;
     }
-    // Handle form submission logic here
-    alert("Form submitted successfully!");
+
+    try {
+      const newForm = {
+        _type: "contact",
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        submittedAt: new Date().toISOString(),
+      };
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newForm),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to submit the form");
+      }
+
+      alert("Form submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+      fetchSubmittedForms();
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+      setError(
+        error.message ||
+          "There was an error submitting the form. Please try again."
+      );
+    }
   };
 
   return (
@@ -40,36 +89,50 @@ export default function Contact() {
             >
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 className="shadow py-4 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Your Name"
+                aria-label="Your Name"
+                required
               />
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="shadow py-4 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Your Email"
+                aria-label="Your Email"
+                required
               />
               <input
-                type="email"
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
                 className="shadow py-4 px-6 col-span-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
-                placeholder="Your Email"
+                placeholder="Subject"
+                aria-label="Subject"
+                required
               />
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 className="shadow py-4 px-6 col-span-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Your Message"
+                aria-label="Your Message"
                 rows="4"
+                required
               ></textarea>
 
-              <div className="col-span-2">
-                <ReCAPTCHA
-                  sitekey={process.env.SITEKEY || "SITEKEY"}
-                  onChange={handleCaptchaChange}
-                />
-              </div>
+              {error && <p className="col-span-2 text-red-500">{error}</p>}
 
               <button
                 type="submit"
                 className="col-span-2 bg-red-700 text-white py-4 px-6 rounded-full hover:bg-red-800 transition-colors duration-300"
-                disabled={!captchaVerified}
               >
                 Send Message
               </button>

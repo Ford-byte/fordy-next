@@ -1,36 +1,30 @@
-import axios from "axios";
+"use client";
+
 import { useEffect, useState } from "react";
+import { client } from "../sanity/client";
+
+const EXPERIENCES_QUERY = `*[_type == "experience"]{_id, company_name, position, company, from, to, description}`;
+const PROJECTS_QUERY = `*[_type == "project"]{_id, company_name, title, company, from, to, description}`;
 
 export default function Experience() {
   const [experiences, setExperiences] = useState([]);
   const [projects, setProjects] = useState([]);
 
-  const fetchExperiences = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:1337/api/experiences?populate=*"
-      );
-      setExperiences(response.data.data);
-    } catch (error) {
-      console.error("Error fetching experiences:", error);
-    }
-  };
-
-  const fetcchProjects = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:1337/api/projects?populate=*"
-      );
-      setProjects(response.data.data);
-    } catch (error) {
-      console.error("Error fetching experiences:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchExperiences();
-    fetcchProjects();
+    async function fetchData() {
+      try {
+        const fetchedExperiences = await client.fetch(EXPERIENCES_QUERY);
+        setExperiences(fetchedExperiences);
+
+        const fetchedProjects = await client.fetch(PROJECTS_QUERY);
+        setProjects(fetchedProjects);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
   }, []);
+
   return (
     <div className="h-fit bg-white w-full text-black py-12">
       <div className="mx-auto container flex flex-col gap-12">
@@ -38,7 +32,7 @@ export default function Experience() {
         <div className="grid grid-cols-2 gap-4">
           <div className="flex flex-col gap-2 border border-gray-300 rounded-lg shadow-md h-fit p-2">
             {experiences.map((experience) => (
-              <div key={experience.id} className="p-2 flex">
+              <div key={experience._id} className="p-2 flex">
                 <div className="p-2 flex flex-col items-center gap-2">
                   <svg
                     className="size-[25px] fill-red-700"
@@ -50,24 +44,22 @@ export default function Experience() {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-crispy text-gray-500">
-                    {experience.attributes.company_name}
+                    {experience.company_name}
                   </h3>
-                  <h3 className="text-xl font-crispy">
-                    {experience.attributes.position}
-                  </h3>
+                  <h3 className="text-xl font-crispy">{experience.position}</h3>
                   <p className="text-gray-600">
-                    {experience.attributes.company} -{" "}
-                    {new Date(experience.attributes.from).toLocaleDateString()}{" "}
-                    to {new Date(experience.attributes.to).toLocaleDateString()}
+                    {experience.company} -{" "}
+                    {new Date(experience.from).toLocaleDateString()} to{" "}
+                    {new Date(experience.to).toLocaleDateString()}
                   </p>
-                  <p className="mt-2">{experience.attributes.description}</p>
+                  <p className="mt-2">{experience.description}</p>
                 </div>
               </div>
             ))}
           </div>
           <div className="flex flex-col gap-2 border border-gray-300 rounded-lg shadow-md h-fit p-2">
-            {projects.map((experience) => (
-              <div key={experience.id} className="p-2 flex ">
+            {projects.map((project) => (
+              <div key={project._id} className="p-2 flex">
                 <div className="p-2 flex flex-col items-center gap-2">
                   <svg
                     className="size-[25px] fill-red-700"
@@ -79,17 +71,15 @@ export default function Experience() {
                 </div>
                 <div className="flex flex-col">
                   <h3 className="text-lg font-crispy text-gray-500">
-                    {experience.attributes.company_name}
+                    {project.company_name}
                   </h3>
-                  <h3 className="text-xl font-crispy">
-                    {experience.attributes.title}
-                  </h3>
+                  <h3 className="text-xl font-crispy">{project.title}</h3>
                   <p className="text-gray-600">
-                    {experience.attributes.company} -{" "}
-                    {new Date(experience.attributes.from).toLocaleDateString()}{" "}
-                    to {new Date(experience.attributes.to).toLocaleDateString()}
+                    {project.company} -{" "}
+                    {new Date(project.from).toLocaleDateString()} to{" "}
+                    {new Date(project.to).toLocaleDateString()}
                   </p>
-                  <p className="mt-2">{experience.attributes.description}</p>
+                  <p className="mt-2">{project.description}</p>
                 </div>
               </div>
             ))}
