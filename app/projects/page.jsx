@@ -77,7 +77,6 @@ export default function Page() {
               key={post._id}
               className="relative h-[225px]  mb-4 w-full p-4 shadow-md flex flex-col justify-between group"
             >
-              {console.log(post)}
               <div
                 className="absolute inset-0 rounded-lg top-0 left-0 w-full z-[2]
                 h-full overflow-hidden"

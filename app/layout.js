@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="flex">
         <Header />
-        <div className="flex-grow lg:ml-[30%] xl:ml-[20%]">{children}</div>
+        <div className="flex-grow lg:ml-[30%] xl:ml-[20%] mt-[50px] lg:mt-0">{children}</div>
       </body>
     </html>
   );
