@@ -19,7 +19,7 @@ const options = { next: { revalidate: 30 } };
 
 export default function Page() {
   const navigation = [
-    { name: "All" }
+    { name: "All" },
     // { name: "Media" },
     // { name: "E-commerce" },
     // { name: "Corporate" },
@@ -71,7 +71,7 @@ export default function Page() {
       </div>
       {loading && <p className="text-gray-500">Loading posts...</p>}
       {!loading && !error && posts.length > 0 && (
-        <div className="mt-6 lg:mt-0 grid lg:grid-cols-3 gap-5">
+        <div className="mt-6 lg:mt-4 grid lg:grid-cols-3 gap-5">
           {posts.map((post, index) => (
             <div
               key={post._id}
