@@ -4,7 +4,7 @@ import Computer from "@/public/svg/computer";
 
 export default function Services() {
   return (
-    <div className="container mx-auto p-6 h-fit">
+    <div className="container mx-auto py-6 h-fit">
       <p className="font-crispy text-4xl">Services</p>
       <div className="grid grid-cols-1 lg:grid-cols-3 my-12 gap-4 h-[fit]">
         <div className="w-full shadow-lg rounded-lg bg-[#6c6ce5] flex flex-col justify-center items-center text-white text-center gap-2 py-2">

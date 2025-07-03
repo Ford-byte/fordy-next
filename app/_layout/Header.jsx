@@ -28,7 +28,7 @@ export default function Header() {
       <div className="fixed border-r border-black/20 lg:w-[30%] xl:w-[20%] h-screen bg-[#776bff] lg:flex flex-col justify-between p-6 hidden">
         <div className="font-crispy text-5xl ">
           <Link
-            href={`#`}
+            href={`/`}
             className="border-b-3 w-fit pb-[8px] border-red-500 text-white "
           >
             FORDY .
