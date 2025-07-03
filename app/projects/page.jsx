@@ -5,7 +5,7 @@ import { client } from "../sanity/client";
 import Link from "next/link";
 
 const POSTS_QUERY = `*[_type == "project"]{
-  _id, link, company_name, title, company, from, to, description,
+  _id, link, company_name, title, company, from, to,category, description,
   image {
     asset->{
       _id,
@@ -102,8 +102,8 @@ export default function Page() {
 
               <div className="relative w-fit">
                 <span className="absolute top-0 -translate-y-1/3 left-0 w-full bg-yellow-500 h-[50px] z-[4] rounded-b-lg"></span>
-                <span className="relative flex z-[6] text-black px-2 font-bold">
-                  E-commerce
+                <span className="relative flex z-[6] text-black px-2 font-bold capitalize">
+                  {post?.category}
                 </span>
               </div>
               <h2 className="text-xl font-bold z-2">{post.title}</h2>
