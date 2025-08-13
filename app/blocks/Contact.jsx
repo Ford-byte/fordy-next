@@ -87,7 +87,7 @@ export default function Contact() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="shadow py-4 px-6 rounded-full"
+                className="shadow py-4 px-6 col-span-2 sm:col-span-1 rounded-full"
                 placeholder="Your Name"
                 required
               />
@@ -96,7 +96,7 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="shadow py-4 px-6 rounded-full"
+                className="shadow py-4 px-6 col-span-2 sm:col-span-1 rounded-full"
                 placeholder="Your Email"
                 required
               />
@@ -119,7 +119,7 @@ export default function Contact() {
                 required
               ></textarea>
 
-              <div className="col-span-2">
+              <div className="origin-[0] scale-[0.85]">
                 <ReCAPTCHA
                   sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                   onChange={handleCaptchaChange}

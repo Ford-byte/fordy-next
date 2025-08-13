@@ -3,92 +3,79 @@
 import { useState, useEffect } from "react";
 import { client } from "../sanity/client";
 import Link from "next/link";
+import Image from "next/image";
 
 const POSTS_QUERY = `*[_type == "project"]{
-  _id, link, company_name, title, company, from, to,category, description,
-  image {
-    asset->{
-      _id,
-      url
-    }
-  }
-}
-`;
-
+  _id, link, company_name, title, company, from, to, category, description,
+  image { asset->{ _id, url } }
+}`;
 const options = { next: { revalidate: 30 } };
 
 export default function Page() {
-  const navigation = [
-    { name: "All" },
-    // { name: "Media" },
-    // { name: "E-commerce" },
-    // { name: "Corporate" },
-  ];
-
+  const navigation = [{ name: "All" }];
   const [posts, setPosts] = useState([]);
   const [selected, setSelected] = useState("All");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [seeName, setSeeName] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
-    async function fetchPosts() {
-      setLoading(true);
-      setError(null);
+    (async () => {
       try {
-        const fetchedPosts = await client.fetch(POSTS_QUERY, {}, options);
-        setPosts(fetchedPosts);
-      } catch (err) {
-        console.error("Error fetching posts:", err);
+        setLoading(true);
+        const data = await client.fetch(POSTS_QUERY, {}, options);
+        setPosts(data);
+      } catch {
         setError("Failed to fetch posts. Please try again later.");
       } finally {
         setLoading(false);
       }
-    }
-    fetchPosts();
+    })();
   }, []);
 
   return (
-    <div className="p-4 md:p-6 lg:p-12 bg-white min-h-fit h-screen">
+    <div className="p-4 md:p-6 lg:p-12 bg-white h-screen min-h-fit">
       <h1 className="text-4xl font-crispy text-gray-700">Projects</h1>
-      <div className="py-6">
-        <div className="flex gap-4">
-          {navigation.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => setSelected(item.name)}
-              className={`px-5 py-[7px] rounded-lg font-[600] text-sm ${
-                selected === item.name
-                  ? "bg-gray-700 text-white"
-                  : "bg-gray-300 text-gray-500 hover:bg-gray-700 hover:text-white"
-              }`}
-            >
-              {item.name}
-            </button>
-          ))}
-        </div>
+
+      <div className="py-6 flex gap-4">
+        {navigation.map((item) => (
+          <button
+            key={item.name}
+            onClick={() => setSelected(item.name)}
+            className={`px-5 py-[7px] rounded-lg font-[600] text-sm ${
+              selected === item.name
+                ? "bg-gray-700 text-white"
+                : "bg-gray-300 text-gray-500 hover:bg-gray-700 hover:text-white"
+            }`}
+          >
+            {item.name}
+          </button>
+        ))}
       </div>
+
       {loading && <p className="text-gray-500">Loading posts...</p>}
+
       {!loading && !error && posts.length > 0 && (
         <div className="mt-6 lg:mt-4 grid lg:grid-cols-3 gap-5">
           {posts.map((post, index) => (
             <div
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               key={post._id}
-              className="relative h-[225px]  mb-4 w-full p-4 shadow-md flex flex-col justify-between group"
+              className="relative h-[225px] w-full p-4 shadow-md flex flex-col justify-between group"
             >
-              <div
-                className="absolute inset-0 rounded-lg top-0 left-0 w-full z-[2]
-                h-full overflow-hidden"
-              >
-                <img
-                  src={post?.image?.asset?.url}
-                  width={100}
-                  height={100}
+              <div className="absolute inset-0 rounded-lg overflow-hidden z-[2]">
+                <Image
+                  src={post?.image?.asset?.url || "/placeholder.jpg"}
                   alt="image"
+                  width={500}
+                  height={500}
+                  fetchPriority="true"
+                  loading="eager"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 rounded-lg"
                 />
               </div>
+
               <div
                 className={`absolute top-0 z-[0] flex left-0 -translate-y-[99%] transition-all duration-100 bg-black/50 w-[90%] ml-4 justify-end px-2 font-bold rounded-t-lg ${
                   hoveredIndex === index ? "slide-in-bottom" : "h-[0] invisible"
@@ -96,8 +83,11 @@ export default function Page() {
               >
                 {post.title}
               </div>
+
               <div
-                className={`absolute ${post?.image?.asset?.url ? "bg-[#7366db]/80 " : "bg-[#7366db]"} inset-0 w-full h-full z-[2] rounded-lg `}
+                className={`absolute ${
+                  post?.image?.asset?.url ? "bg-[#7366db]/80" : "bg-[#7366db]"
+                } inset-0 w-full h-full z-[2] rounded-lg`}
               ></div>
 
               <div className="relative w-fit">
@@ -106,12 +96,12 @@ export default function Page() {
                   {post?.category}
                 </span>
               </div>
+
               <h2 className="text-xl font-bold z-2">{post.title}</h2>
+
               <Link
                 href={post?.link}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="size-[50px] peer bg-yellow-500 flex items-center justify-center rounded-full pointer-cursor z-[7]"
+                className="size-[50px] bg-yellow-500 flex items-center justify-center rounded-full z-[7]"
               >
                 <svg className="size-[20px] fill-red-700" viewBox="0 0 512 512">
                   <g>
@@ -134,6 +124,7 @@ export default function Page() {
           ))}
         </div>
       )}
+
       {!loading && !error && posts.length === 0 && (
         <p className="text-gray-500">No posts available.</p>
       )}
