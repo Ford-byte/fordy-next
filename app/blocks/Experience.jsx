@@ -27,8 +27,8 @@ export default function Experience() {
   }, []);
 
   return (
-    <div className="h-fit bg-white w-full text-black py-12 px-6 lg:px-0">
-      <div className="mx-auto container flex flex-col gap-12">
+    <div className="h-fit bg-white w-full text-black py-12 lg:px-0">
+      <div className="custom-container flex flex-col gap-12">
         <p className="font-crispy text-4xl">Experience</p>
         <div className="grid lg:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2 border border-gray-300 rounded-lg shadow-md h-fit p-2">

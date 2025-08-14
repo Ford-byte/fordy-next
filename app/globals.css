@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #776bff;
     --foreground: #ededed;
   }
 }
@@ -23,11 +23,15 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
   scroll-behavior: smooth;
 }
 
-html {
-  scroll-behavior: smooth;
+.scroll-section {
+  height: 100vh;
 }
 
 @font-face {
@@ -64,29 +68,14 @@ html {
 }
 
 .container {
-  width: 100%;
-  @media (width >= 40rem /* 640px */) {
-    max-width: 20rem /* 640px */;
-  }
-  @media (width >= 48rem /* 768px */) {
-    max-width: 28rem /* 768px */;
-  }
-  @media (width >= 64rem /* 1024px */) {
-    max-width: 34rem /* 1024px */;
-  }
-  @media (width >= 80rem /* 1280px */) {
-    max-width: 50rem /* 1280px */;
-  }
-  @media (width >= 96rem /* 1536px */) {
-    max-width: 56rem /* 1536px */;
-  }
+  @apply mx-auto px-[16px] sm:px-0;
 }
 
 .slide-in-bottom {
-	animation: slide-in-bottom 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
- @keyframes slide-in-bottom {
+@keyframes slide-in-bottom {
   0% {
     transform: translateY(100%);
   }
@@ -95,3 +84,10 @@ html {
   }
 }
 
+svg {
+  @apply cursor-pointer;
+}
+
+.custom-container {
+  @apply px-[16px] sm:px-[24px];
+}

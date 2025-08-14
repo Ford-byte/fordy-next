@@ -2,6 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Home from "@/public/svg/home";
+import User from "@/public/svg/user";
+import File from "@/public/svg/file";
+import Phone from "@/public/svg/phone";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -93,59 +97,23 @@ export default function Header() {
           <p>@2025 clifford jay iyac</p>
         </div>
       </div>
-      <div className="fixed p-4 w-full flex justify-end z-[1000] h-fit bg-[#776bff] shadow lg:hidden">
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="size-8 cursor-pointer"
-          onClick={toggleMenu}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      </div>
-      <div
-        className={`fixed inset-0 h-full bg-white z-[1001] text-black flex lg:hidden transition-all duration-500 ease-in-out overflow-hidden ${
-          menuOpen ? "w-full opacity-100" : "w-0 opacity-0"
-        }`}
-      >
-        <svg
-          className="size-8 absolute top-4 right-4 cursor-pointer"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          onClick={toggleMenu}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-        <div className="w-full flex-col gap-y-6 flex items-center font-crispy text-xl justify-center transition-opacity duration-500 delay-100">
-          <Link href="/" className="hover:text-gray-700" onClick={toggleMenu}>
-            Home
+      <div className="fixed top-0 z-[100] bg-[#776bff] w-full shadow-md flex sm:hidden justify-between  p-2">
+        <div className="flex items-center gap-2">
+          <Link href={`/`}>
+            <Home className={`size-8 fill-white`} />
           </Link>
-          <Link
-            href="/about"
-            className="hover:text-gray-700"
-            onClick={toggleMenu}
-          >
-            About
+          <Link href="/about">
+            <User className={`size-8 fill-white`} />
           </Link>
-          <Link
-            href="/projects"
-            className="hover:text-gray-700"
-            onClick={toggleMenu}
-          >
-            Projects
+          <Link href="/projects">
+            <File className={`size-8 fill-white`} />
           </Link>
+          <a href="#contact">
+            <Phone className={`size-8 fill-white`} />
+          </a>
+        </div>
+        <div className="flex items-center py-2 px-4 rounded-md font-black bg-black font-serif shadow-md">
+          HIRE ME
         </div>
       </div>
     </div>

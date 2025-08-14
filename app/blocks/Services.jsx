@@ -4,7 +4,7 @@ import Computer from "@/public/svg/computer";
 
 export default function Services() {
   return (
-    <div className="container mx-auto p-6 h-fit">
+    <div className="custom-container mx-auto p-6 h-fit">
       <p className="font-crispy text-4xl">Services</p>
       <div className="grid grid-cols-1 lg:grid-cols-3 my-12 gap-4">
         <div className="w-full h-[250px]  shadow-lg rounded-lg bg-[#6c6ce5] flex flex-col justify-center items-center text-white text-center gap-2">
@@ -12,7 +12,7 @@ export default function Services() {
           <span className="text-lg font-crispy px-4 leading-[100%]">
             Frontend Development
           </span>
-          <span className="text-mdpx-4">
+          <span className="text-md px-4">
             Lorem ipsum dolor sit amet consectetuer adipiscing elit aenean
             commodo ligula eget
           </span>
@@ -22,7 +22,7 @@ export default function Services() {
           <span className="text-lg font-crispy px-6 leading-[100%]">
             Backend Development
           </span>
-          <span className="text-mdpx-4">
+          <span className="text-md px-4">
             Lorem ipsum dolor sit amet consectetuer adipiscing elit aenean
             commodo ligula eget
           </span>
@@ -32,7 +32,7 @@ export default function Services() {
           <span className="text-lg font-crispy px-4 leading-[100%]">
             ON-page seo
           </span>
-          <span className="text-mdpx-4">
+          <span className="text-md px-4">
             Lorem ipsum dolor sit amet consectetuer adipiscing elit aenean
             commodo ligula eget
           </span>

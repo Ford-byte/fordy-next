@@ -70,10 +70,13 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-fit bg-white w-full text-black py-12 px-6 lg:px-0" id="contact">
-      <div className="mx-auto container flex flex-col gap-12">
+    <div
+      className="h-fit bg-white w-full text-black py-12"
+      id="contact"
+    >
+      <div className="custom-container flex flex-col gap-12">
         <p className="font-crispy text-4xl">Contact</p>
-        <div className="flex gap-4">
+        <div className="">
           <div className="col-span-1  flex-col gap-2 text-gray-400 hidden lg:flex">
             <div className="font-crispy text-xl">
               Let's talk about everything!
@@ -90,7 +93,7 @@ export default function Contact() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="shadow py-4 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                className="shadow col-span-2 md:col-span-1 py-4 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Your Name"
                 aria-label="Your Name"
                 required
@@ -100,7 +103,7 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="shadow py-4 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                className="shadow col-span-2 md:col-span-1 py-4 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Your Email"
                 aria-label="Your Email"
                 required
