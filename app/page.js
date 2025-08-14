@@ -10,7 +10,7 @@ import Contact from "./blocks/Contact";
 export default function Home() {
   return (
     <div className="relative ">
-      <div className="relative flex flex-col items-center justify-center w-full h-[720px] lg:h-screen gap-y-6">
+      <div className="relative flex flex-col items-center justify-center text-center w-full h-[720px] lg:h-screen gap-y-6">
         <Image
           src={`/avatar-1.svg`}
           width={50}
@@ -18,7 +18,7 @@ export default function Home() {
           className="size-[200px] rounded-full object-cover"
           alt="avatar"
         />
-        <div className="font-crispy text-3xl">CLIFFORD JAY IYAC</div>
+        <div className="font-crispy text-3xl ">CLIFFORD JAY IYAC</div>
         <div className="flex gap-6">
           <a className="" href="https://www.facebook.com/cli.f.ford.104957">
             <svg
@@ -76,25 +76,4 @@ export default function Home() {
       {/* <Projects/> */}
     </div>
   );
-}
-
-{
-  /* {projects?.map((item, index) => {
-        console.log(item?.attributes?.images?.data);
-        return (
-          <div className="" key={index}>
-            {item?.attributes?.images?.data?.map((image, imgIndex) => {
-              return (
-                <div key={imgIndex}>
-                  <img
-                    src={`http://localhost:1337${image?.attributes?.url}`}
-                    alt={item?.attributes?.title}
-                    className="w-full h-auto"
-                  />
-                </div>
-              );
-            })}
-          </div>
-        );
-      })} */
 }
